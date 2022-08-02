@@ -1,7 +1,7 @@
 const request = require('request')
 
 const geocode = (address, callback) => {
-    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=pk.eyJ1IjoiYW5kcmV3bWVhZDEiLCJhIjoiY2pvOG8ybW90MDFhazNxcnJ4OTYydzJlOSJ9.njY7HvaalLEVhEOIghPTlw&limit=1'
+    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=pk.eyJ1Ijoibm91cmhhbndhbGVlZCIsImEiOiJjbDZhb2lhcWQ0Z296M29wZGZ4dzI3c2JnIn0.obQvBWRTD8wH1TOY14erQg'
 
     request({ url: url, json: true }, (error, response) => {
         if (error) {
@@ -10,8 +10,8 @@ const geocode = (address, callback) => {
             callback('Unable to find location. Try another search.', undefined)
         }*/ else {
             callback(undefined, {
-                latitude: response.body.geometry.coordinates[0],
-                longitude: response.body.geometry.coordinates[1],
+                latitude: response.body.features[0].geometry.coordinates[1],
+                longitude: response.body.features[0].geometry.coordinates[0],
              //   location: response.body.features[0].place_name
             })
         }
